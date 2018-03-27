@@ -3,6 +3,7 @@ import { NavController, NavParams, ViewController, LoadingController, ToastContr
 import { BaseUI } from '../../common/loading';
 import { RestProvider } from '../../providers/rest/rest';
 import { Storage } from '@ionic/storage'
+import { RegisterPage } from '../register/register'
 
 /**
  * Generated class for the LoginPage page.
@@ -51,12 +52,15 @@ export class LoginPage extends BaseUI {
         },
         error => this.errorMessage = <any>error);
   }
- /**
-  * 关闭当前页面的方法
-  * 
-  * @memberof LoginPage
-  */
- dismiss() {
-    this.viewCtrl.dismiss()
+  /**
+   * 关闭当前页面的方法
+   * 
+   * @memberof LoginPage
+   */
+  dismiss() {
+    this.viewCtrl.dismiss();
+  }
+  pushRegister() {
+    this.navCtrl.push(RegisterPage);
   }
 }

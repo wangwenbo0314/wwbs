@@ -46,6 +46,19 @@ export class RestProvider {
     return this.getUrlReturn(this.apiUrlLogin + "?mobile=" + mobile + "&password=" + password)
   }
   /**
+   * 注册请求
+   * 需要做安全性处理
+   * 
+   * @param {any} mobile 
+   * @param {any} nickname 
+   * @param {any} password 
+   * @returns {Observable<string[]>} 
+   * @memberof RestProvider
+   */
+  register(mobile, nickname, password): Observable<string[]> {
+    return this.getUrlReturn(this.apiUrlRegister + "?mobile=" + mobile + "&nickname" + nickname + "&password=" + password)
+  }
+  /**
    * 全局获取HTTP请求的方法
    * 
    * @private

@@ -35,7 +35,7 @@ import { IonicStorageModule } from '@ionic/storage'
   imports: [
     BrowserModule,
     HttpModule,//全局需要导入HTTP
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp,{backButtonText:'返回',}),
     IonicStorageModule.forRoot()//全局定义storage
   ],
   bootstrap: [IonicApp],
