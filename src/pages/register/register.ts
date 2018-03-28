@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController, LoadingController, ToastController } from 'ionic-angular';
+import { NavController, NavParams, ViewController, LoadingController, ToastController } from 'ionic-angular';
 import { RestProvider } from '../../providers/rest/rest';
 import { BaseUI } from '../../common/loading';
 /**
@@ -59,8 +59,8 @@ export class RegisterPage extends BaseUI {
         .subscribe(
           f => {
             if (f["Status"] == "OK") {
-              this.dismiss();
               loading.dismiss();
+              this.dismiss();     
             } else {
               loading.dismiss();
               super.showToast(this.toastCtrl, f["StatusContent"])

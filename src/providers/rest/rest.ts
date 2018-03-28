@@ -56,7 +56,7 @@ export class RestProvider {
    * @memberof RestProvider
    */
   register(mobile, nickname, password): Observable<string[]> {
-    return this.getUrlReturn(this.apiUrlRegister + "?mobile=" + mobile + "&nickname" + nickname + "&password=" + password)
+    return this.getUrlReturn(this.apiUrlRegister + "?mobile=" + mobile + "&nickname=" + nickname + "&password=" + password)
   }
   /**
    * 全局获取HTTP请求的方法
