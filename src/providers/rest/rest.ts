@@ -56,7 +56,28 @@ export class RestProvider {
    * @memberof RestProvider
    */
   register(mobile, nickname, password): Observable<string[]> {
-    return this.getUrlReturn(this.apiUrlRegister + "?mobile=" + mobile + "&nickname" + nickname + "&password=" + password)
+    return this.getUrlReturn(this.apiUrlRegister + "?mobile=" + mobile + "&nickname=" + nickname + "&password=" + password)
+  }
+  /**
+   * 根据userId获取用户信息
+   * 
+   * @param {any} userId 
+   * @returns {Observable<string[]>} 
+   * @memberof RestProvider
+   */
+  getUserInfo(userId): Observable<string[]> {
+    return this.getUrlReturn(this.apiUrlUserInfo + "?userid=" + userId)
+  }
+  /**
+   * 根据userId修改昵称
+   * 
+   * @param {any} userId 
+   * @param {any} nickname 
+   * @returns {Observable<string[]>} 
+   * @memberof RestProvider
+   */
+  updateNickName(userId, nickname): Observable<string[]> {
+    return this.getUrlReturn(this.apiUrlUpdateNickName + "?userid=" + userId + "&nickname=" + nickname);
   }
   /**
    * 全局获取HTTP请求的方法
