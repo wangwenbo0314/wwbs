@@ -14,12 +14,19 @@ import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
 import { UserPage } from '../pages/user/user';
 import { HeadfacePage } from '../pages/headface/headface';
+import { QuestionPage } from '../pages/question/question';
 
 import { TabsPage } from '../pages/tabs/tabs';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { IonicStorageModule } from '@ionic/storage'
+
+//导入四个外部加载进来的组件
+import { File } from '@ionic-native/file'
+import { Transfer, TransferObject } from '@ionic-native/transfer'
+import { FilePath } from '@ionic-native/file-path'
+import { Camera } from '@ionic-native/camera'
 
 @NgModule({
   declarations: [
@@ -33,7 +40,8 @@ import { IonicStorageModule } from '@ionic/storage'
     LoginPage,
     RegisterPage,
     UserPage,
-    HeadfacePage
+    HeadfacePage,
+    QuestionPage
 
   ],
   imports: [
@@ -54,13 +62,19 @@ import { IonicStorageModule } from '@ionic/storage'
     LoginPage,
     RegisterPage,
     UserPage,
-    HeadfacePage
+    HeadfacePage,
+    QuestionPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     RestProvider,
-    { provide: ErrorHandler, useClass: IonicErrorHandler }
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    File,
+    Transfer,
+    FilePath,
+    Camera,
+    TransferObject
   ]
 })
 export class AppModule { }

@@ -6,12 +6,6 @@ import { BaseUI } from '../../common/loading';
 import { RestProvider } from '../../providers/rest/rest';
 import { UserPage } from '../user/user'
 
-/**
- * Generated class for the MorePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 @Component({
   selector: 'page-more',
   templateUrl: 'more.html',
@@ -65,5 +59,4 @@ export class MorePage extends BaseUI {
   gotoUserPage() {
     this.navCtrl.push(UserPage);
   }
-
 }

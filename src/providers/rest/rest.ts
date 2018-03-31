@@ -47,7 +47,7 @@ export class RestProvider {
   }
   /**
    * 注册请求
-   * 需要做安全性处理
+   * 需要做安全性和保密处理
    * 
    * @param {any} mobile 
    * @param {any} nickname 
