@@ -1,18 +1,19 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ViewController, LoadingController, ToastController } from 'ionic-angular';
+import { NavController, NavParams, ViewController,LoadingController,ToastController} from 'ionic-angular';
 import { BaseUI } from '../../common/loading';
 import { Storage } from '@ionic/storage';
 import { RestProvider } from '../../providers/rest/rest';
 
 
 @Component({
-  selector: 'page-question',
-  templateUrl: 'question.html',
+  selector: 'page-answer',
+  templateUrl: 'answer.html',
 })
-export class QuestionPage extends BaseUI {
-  title: string
-  content: string
-  errorMessage: any
+export class AnswerPage extends BaseUI {
+
+  id: string;
+  errorMessage: any;
+  content: string;
 
   constructor(public navCtrl: NavController,
     public viewCtrl: ViewController,
@@ -22,19 +23,21 @@ export class QuestionPage extends BaseUI {
     public toastCtrl: ToastController,
     public navParams: NavParams) {
     super();
+    this.id = navParams.get('id');
+
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad QuestionPage');
+    console.log('ionViewDidLoad AnswerPage');
   }
   dismiss() {
     this.viewCtrl.dismiss();
   }
-  submitQuestion() {
+  submit() {
     this.storage.get('UserId').then((val) => {
       if (val != null) {
         var loading = super.showLoading(this.loadingCtrl, "发表中...")
-        this.rest.saveQuestion(val, this.title, this.content)
+        this.rest.answer(val, this.id, this.content)
           .subscribe(f => {
             if (f["Status"] == "OK") {
               loading.dismissAll();
@@ -45,7 +48,7 @@ export class QuestionPage extends BaseUI {
           },
             error => this.errorMessage = <any>error);
       } else {
-        super.showToast(this.toastCtrl, "请登录之后再进行提问！")
+        super.showToast(this.toastCtrl, "请登录之后再进行回答！")
       }
     });
   }

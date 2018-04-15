@@ -1,8 +1,8 @@
-import { Http, Response } from '@angular/http';
 import { Injectable } from '@angular/core';
+import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/map';
 
 /*
   Generated class for the RestProvider provider.
@@ -78,6 +78,62 @@ export class RestProvider {
    */
   updateNickName(userId, nickname): Observable<string[]> {
     return this.getUrlReturn(this.apiUrlUpdateNickName + "?userid=" + userId + "&nickname=" + nickname);
+  }
+  /**
+   * 发表提问
+   * 
+   * @param {any} userid 
+   * @param {any} title 
+   * @param {any} content 
+   * @returns {Observable<string[]>} 
+   * @memberof RestProvider
+   */
+  saveQuestion(userid, title, content): Observable<string[]> {
+    return this.getUrlReturn(this.apiUrlQuestionSave + "?userid=" + userid + "&title=" + title + "&content=" + content);
+  }
+  /**
+   * 请求首页的feeds流
+   * 
+   * @returns {Observable<string[]>} 
+   * @memberof RestProvider
+   */
+  getFeeds(): Observable<string[]> {
+    return this.getUrlReturn(this.apiUrlFeeds);
+  }
+  /**
+   * 得到问题回答列表
+   * 
+   * @param {any} id 
+   * @returns {Observable<string[]>} 
+   * @memberof RestProvider
+   */
+  getQuestion(id): Observable<string[]> {
+    return this.getUrlReturn(this.apiUrlGetQuestion + "?id=" + id)
+  }
+  /**
+   * 获取问题的详情，传递userid获取到当前用户有没有关注此问题
+   * 
+   * @param {any} questionId 
+   * @param {any} userId 
+   * @returns {Observable<string[]>} 
+   * @memberof RestProvider
+   */
+  getQuestionWithUser(questionId, userId): Observable<string[]> {
+    return this.getUrlReturn(this.apiUrlGetQuestionWithUser + "?id=" + questionId + "&userid=" + userId)
+  }
+  /**
+   * 点击关注或取消关注
+   * 
+   * @param {any} questionId 
+   * @param {any} userId 
+   * @returns {Observable<string[]>} 
+   * @memberof RestProvider
+   */
+  saveFavourite(questionId, userId): Observable<string[]> {
+    return this.getUrlReturn(this.apiUrlSaveFavourite + "?questionid=" + questionId + "&userid=" + userId);
+  }
+  answer(userId, questionId, content): Observable<string[]> {
+    return this.getUrlReturn(this.apiUrlAnswer + "?userid=" + userId + "&questionid=" + questionId + "&content=" + content)
   }
   /**
    * 全局获取HTTP请求的方法
