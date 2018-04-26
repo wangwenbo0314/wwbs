@@ -48,11 +48,11 @@ export class DetailsPage extends BaseUI {
         this.rest.getQuestionWithUser(this.id, val)
           .subscribe(
             q => {
-              loading.dismiss();
               this.question = q;
               this.answers = q["Answers"];
               this.isFavourite = q["isFavourite"]
               this.isMyQuestion = (q["OwnUserId"] == val);
+              loading.dismissAll();
             },
             error => this.errorMessage = <any>error);
       }

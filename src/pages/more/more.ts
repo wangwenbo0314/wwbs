@@ -4,7 +4,8 @@ import { LoginPage } from '../login/login';
 import { Storage } from '@ionic/storage'
 import { BaseUI } from '../../common/loading';
 import { RestProvider } from '../../providers/rest/rest';
-import { UserPage } from '../user/user'
+import { UserPage } from '../user/user';
+import { UserdatalistPage } from '../userdatalist/userdatalist';
 
 @Component({
   selector: 'page-more',
@@ -32,7 +33,7 @@ export class MorePage extends BaseUI {
     })
     modal.present();
   }
-  ionViewDidEnter() {
+  ionViewDidLoad() {
     this.loadUserPage();
   }
   loadUserPage() {
@@ -47,7 +48,7 @@ export class MorePage extends BaseUI {
               this.headface = userinfo["UserHeadface"] + "?" + (new Date()).valueOf();
               this.notLogin = false;
               this.logined = true;
-              loading.dismiss();
+              loading.dismissAll();
             });
 
       } else {
@@ -58,5 +59,8 @@ export class MorePage extends BaseUI {
   }
   gotoUserPage() {
     this.navCtrl.push(UserPage);
+  }
+  gotoDataList(datatype) {
+    this.navCtrl.push(UserdatalistPage, { "datatype": datatype })
   }
 }

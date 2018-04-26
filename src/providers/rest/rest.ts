@@ -34,6 +34,8 @@ export class RestProvider {
   private apiUrlGetQuestionWithUser = "https://imoocqa.gugujiankong.com/api/question/getwithuser";
   private apiUrlAnswer = "https://imoocqa.gugujiankong.com/api/question/answer";
   private apiUrlSaveFavourite = "https://imoocqa.gugujiankong.com/api/question/savefavourite";
+  //notification
+  private apiUrlUserNotifications = "https://imoocqa.gugujiankong.com/api/account/usernotifications";
   /**
    * 根据用户的手机号码和密码进行登录
    * 
@@ -132,8 +134,47 @@ export class RestProvider {
   saveFavourite(questionId, userId): Observable<string[]> {
     return this.getUrlReturn(this.apiUrlSaveFavourite + "?questionid=" + questionId + "&userid=" + userId);
   }
+  /**
+   * 发布提问
+   * 
+   * @param {any} userId 
+   * @param {any} questionId 
+   * @param {any} content 
+   * @returns {Observable<string[]>} 
+   * @memberof RestProvider
+   */
   answer(userId, questionId, content): Observable<string[]> {
     return this.getUrlReturn(this.apiUrlAnswer + "?userid=" + userId + "&questionid=" + questionId + "&content=" + content)
+  }
+  /**
+   * 得到发现页面所有问题列表
+   * 
+   * @returns {Observable<string[]>} 
+   * @memberof RestProvider
+   */
+  getQuestions(): Observable<string[]> {
+    return this.getUrlReturn(this.apiUrlQuestionList);
+  }
+  /**
+   * 获取用户所有的通知
+   * 
+   * @param {any} userId 
+   * @returns {Observable<string[]>} 
+   * @memberof RestProvider
+   */
+  getUserNotifications(userId): Observable<string[]> {
+    return this.getUrlReturn(this.apiUrlUserNotifications + "?userid=" + userId);
+  }
+  /**
+   * 获取用户的相关问题列表
+   * 
+   * @param {any} userId 
+   * @param {any} type question/answer/favourite
+   * @returns {Observable<string[]>} 
+   * @memberof RestProvider
+   */
+  getUserQuestionList(userId, type): Observable<string[]> {
+    return this.getUrlReturn(this.apiGetUserQuestionList + "?userid=" + userId + "&type=" + type);
   }
   /**
    * 全局获取HTTP请求的方法
