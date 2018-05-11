@@ -6,6 +6,8 @@ import { BaseUI } from '../../common/loading';
 import { RestProvider } from '../../providers/rest/rest';
 import { UserPage } from '../user/user';
 import { UserdatalistPage } from '../userdatalist/userdatalist';
+import { SettingsProvider } from '../../providers/settings/settings';
+import { ScanPage } from '../scan/scan';
 
 @Component({
   selector: 'page-more',
@@ -16,14 +18,17 @@ export class MorePage extends BaseUI {
   public logined: boolean = false;
   headface: string;
   userinfo: string[];
+  selectedTheme: string;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public modalCtrl: ModalController,
     public rest: RestProvider,
+    private setting: SettingsProvider,
     public loadingCtrl: LoadingController,
     public storage: Storage) {
     super();
+    this.setting.getActiveTheme().subscribe(val => this.selectedTheme = val);
   }
   showModal() {
     let modal = this.modalCtrl.create(LoginPage);
@@ -60,7 +65,17 @@ export class MorePage extends BaseUI {
   gotoUserPage() {
     this.navCtrl.push(UserPage);
   }
+  gotoScanQRCode() {
+    this.navCtrl.push(ScanPage, null, { "animate": false });
+  }
   gotoDataList(datatype) {
     this.navCtrl.push(UserdatalistPage, { "datatype": datatype })
+  }
+  toggleChangeTheme() {
+    if (this.selectedTheme === 'dark-theme') {
+      this.setting.setActiveTheme('light-theme');
+    } else {
+      this.setting.setActiveTheme('dark-theme');
+    }
   }
 }

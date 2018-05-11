@@ -20,6 +20,7 @@ import { DetailsPage } from '../pages/details/details';
 import { AnswerPage } from '../pages/answer/answer';
 import { ChatdetailsPage } from '../pages/chatdetails/chatdetails';
 import { UserdatalistPage } from '../pages/userdatalist/userdatalist';
+import { ScanPage } from '../pages/scan/scan';
 
 
 import { TabsPage } from '../pages/tabs/tabs';
@@ -37,8 +38,10 @@ import { Transfer, TransferObject } from '@ionic-native/transfer'
 import { FilePath } from '@ionic-native/file-path'
 import { Camera } from '@ionic-native/camera'
 import { ChatserviceProvider } from '../providers/chatservice/chatservice';
+import { QRScanner } from '@ionic-native/qr-scanner';
 
 import { RelativetimePipe } from '../pipes/relativetime/relativetime'
+import { SettingsProvider } from '../providers/settings/settings';
 
 
 @NgModule({
@@ -59,7 +62,8 @@ import { RelativetimePipe } from '../pipes/relativetime/relativetime'
     AnswerPage,
     ChatdetailsPage,
     RelativetimePipe,
-    UserdatalistPage
+    UserdatalistPage,
+    ScanPage
 
   ],
   imports: [
@@ -87,7 +91,8 @@ import { RelativetimePipe } from '../pipes/relativetime/relativetime'
     DetailsPage,
     AnswerPage,
     ChatdetailsPage,
-    UserdatalistPage
+    UserdatalistPage,
+    ScanPage
   ],
   providers: [
     StatusBar,
@@ -100,7 +105,8 @@ import { RelativetimePipe } from '../pipes/relativetime/relativetime'
     Camera,
     TransferObject,
     EmojiProvider,
-    ChatserviceProvider
+    ChatserviceProvider,
+    SettingsProvider
   ]
 })
 export class AppModule { }
