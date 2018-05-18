@@ -103,6 +103,7 @@ import { SettingsProvider } from '../providers/settings/settings';
     Transfer,
     FilePath,
     Camera,
+    QRScanner,
     TransferObject,
     EmojiProvider,
     ChatserviceProvider,

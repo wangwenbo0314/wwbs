@@ -1,12 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the ScanPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner';
 
 @IonicPage()
 @Component({
@@ -14,12 +8,62 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'scan.html',
 })
 export class ScanPage {
+  protected light: boolean = false;
+  protected frontCamera: boolean = false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    public alertCtrl: AlertController,
+    public qrScanner: QRScanner) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ScanPage');
+  ionViewDidEnter() {
+    this.scanQRCode();
+  }
+
+  scanQRCode() {
+    this.qrScanner.prepare()
+      .then((status: QRScannerStatus) => {
+        if (status.authorized) {
+          window.document.querySelector('body').classList.add('transparent-body');
+          let scanSub = this.qrScanner.scan().subscribe((text: string) => {
+            let alert = this.alertCtrl.create({
+              title: '二维码内容',
+              subTitle: text,
+              buttons: ['OK']
+            });
+            alert.present();
+            scanSub.unsubscribe();
+          });
+
+          this.qrScanner.show();
+
+        }
+        else if (status.denied) {
+          //提醒用户权限没有开
+        }
+        else {
+
+        }
+      })
+      .catch((e: any) => console.error('Error :', e));
+  }
+  toggleLight() {
+    this.light = !this.light;
+    if (this.light) {
+      this.qrScanner.disableLight();
+    } else {
+      this.qrScanner.enableLight();
+
+    }
+  }
+  toggleCamera() {
+    this.frontCamera = !this.frontCamera;
+    if (this.frontCamera) {
+      this.qrScanner.useBackCamera();
+    } else {
+      this.qrScanner.useFrontCamera();
+    }
   }
 
 }
