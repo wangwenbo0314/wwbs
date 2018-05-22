@@ -8,6 +8,7 @@ import { UserPage } from '../user/user';
 import { UserdatalistPage } from '../userdatalist/userdatalist';
 import { SettingsProvider } from '../../providers/settings/settings';
 import { ScanPage } from '../scan/scan';
+import { VersionsPage } from '../versions/versions';
 
 @Component({
   selector: 'page-more',
@@ -64,6 +65,9 @@ export class MorePage extends BaseUI {
   }
   gotoUserPage() {
     this.navCtrl.push(UserPage);
+  }
+  gotoVersions(){
+    this.navCtrl.push(VersionsPage);
   }
   gotoScanQRCode() {
     this.navCtrl.push(ScanPage, null, { "animate": false });

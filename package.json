@@ -21,6 +21,7 @@
     "@angular/http": "5.2.9",
     "@angular/platform-browser": "5.2.9",
     "@angular/platform-browser-dynamic": "5.2.9",
+    "@ionic-native/app-version": "^4.7.0",
     "@ionic-native/camera": "^4.6.0",
     "@ionic-native/core": "4.5.3",
     "@ionic-native/file": "^4.6.0",
